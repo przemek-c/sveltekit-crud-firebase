@@ -3,9 +3,12 @@
 ```bash 
  npm run dev
  ```
-in dashboard +page.svelte namieszane 
-w sensie proba zamiany todo na kcp
-przyklad od fireship mocno rozbudowany wiec moze byc ciezko
-a wiec dodane saveKcp ale addKcp chyba tez w ten sposob zrobic bedzie trzeba
-no i UI do przeprojektowania!
+worked in dashboard +page.svelte  
+trying to replace todo with kcp  
+fireship example may be too complex for this  
+so I add saveKcp and need do the same with addKcp I guess  
+and rebuild UI  
+text field and add button already need to exist somewhere so multiply
+and split view to person and activity
+so check GitHub Copilot
 
