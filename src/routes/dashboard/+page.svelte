@@ -1,7 +1,7 @@
 <script>
     import { db } from "../../lib/firebase/firebase";
     import { authHandlers, authStore } from "../../store/store";
-    import { getDoc, doc, setDoc } from "firebase/firestore";
+    import { getDoc, doc, setDoc, Timestamp } from "firebase/firestore";
     import TodoItem from "../../components/TodoItem.svelte";
 
     let todoList = [];
@@ -19,6 +19,23 @@
         }
         todoList = [...todoList, currTodo];
         currTodo = "";
+
+        /* So I guess I need to do sth like:
+        formData.set({
+            icon: "",
+            title: "",
+            url: "",
+          });
+          
+          and then modify UI to see those things
+          so like new component 
+
+          some from Google Tutorial
+          https://firebase.google.com/docs/firestore/manage-data/add-data
+          */
+
+
+
     }
 
     function editTodo(index) {
@@ -52,6 +69,35 @@
             console.log("There was an error saving your information");
         }
     }
+
+    // my way
+    async function saveKcp() {
+        try {
+            const userRef = doc(db, "users", $authStore.user.uid);
+            await setDoc(
+                userRef,
+                {
+                    activity: {
+                        from: Timestamp.fromDate(new Date()),
+                        to: Timestamp.fromDate(new Date()),
+                        where: "",
+                        what: "",
+                        numbers: ""
+                    },
+                    person: {
+                        name: "",
+                        kelement: "",
+                        nelement: "",
+                        car: ""
+                    }
+                },
+                { merge: true }
+            );
+        } catch (err) {
+            console.log("There was an error saving your information");
+        }
+    }
+
 </script>
 
 {#if !$authStore.loading}
